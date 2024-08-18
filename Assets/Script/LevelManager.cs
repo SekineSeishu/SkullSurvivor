@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
             Time.timeScale = 0;
             _level++;
             _levelUP += 8;
-            player.Attack += _attackUp;
+            player._attack += _attackUp;
             hpbar._enemydamage += 1;
             _exp = 0;
         }
