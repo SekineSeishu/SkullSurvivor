@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class SlashManager : MonoBehaviour
 {
-    public Skill _skill;
+    public Skill _skill;//スキルデータ
     public Slashing slashPrehubL;//スキル
     public Slashing slashPrehubR;//スキル
     public Player _player;
     public SpriteRenderer _playersp;
     public float _coolTime;//クールタイム
     public bool _nowSkill;//スキル発動判定
-    //public int slashLevel;
-    public TextMeshProUGUI resultSlathLevel;//スキルレベル
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +47,10 @@ public class SlashManager : MonoBehaviour
 
         if (_coolTime <= 0)
         {
-            if (!_nowSkill)
+            if (!_nowSkill)//現在スキルが出ているか
             {
                 transform.position = _player.gameObject.transform.position;
+                //スキルレベルに応じて生成する数を変える
                 if (_skill._skillLevel <= 2)
                 {
                     if (_playersp.flipX == true)
