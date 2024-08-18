@@ -51,7 +51,7 @@ public class Magic : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             //プレイヤーの攻撃力とスキルのダメージ
-            enemy.HitDamage(_player.Attack * _skill._damage);
+            enemy.HitDamage(_player._attack * _skill._damage);
         }
     }
 }
