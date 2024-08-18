@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-	public float speed = 0.5f;
-	SpriteRenderer sp;
-	public float Attack = 1.0f;
+	[SerializeField] private Skill _skill;
+	public float _speed = 0.5f;
+	SpriteRenderer _sp;
+	public float _attack = 1.0f;
 	private Animator animator;
 
 
 	// Start is called before the first frame update
 	void Start()
-    {
-		sp = GetComponent<SpriteRenderer>();
+	{
+		_sp = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
 	}
 
@@ -25,28 +26,27 @@ public class Player : MonoBehaviour
 
 		if (Input.GetKey(KeyCode.A))
 		{
-			sp.flipX = false;
+			_sp.flipX = false;
 			// ‘ã“ü‚µ‚½Position‚É‘Î‚µ‚Ä‰ÁZŒ¸Z‚ğs‚¤
-			Position.x -= speed;
+			Position.x -= _speed;
 		}
 		else if (Input.GetKey(KeyCode.D))
 		{
 			//ƒLƒƒƒ‰ƒNƒ^[‚ğ”½“]‚³‚¹‚é
-			sp.flipX = true;
-			Position.x += speed;
+			_sp.flipX = true;
+			Position.x += _speed;
 		}
 		else if (Input.GetKey(KeyCode.W))
 		{
-			Position.y += speed;
+			Position.y += _speed;
 		}
 		else if (Input.GetKey(KeyCode.S))
 		{
-			Position.y -= speed;
+			Position.y -= _speed;
 		}
 		// Œ»İ‚ÌˆÊ’u‚É‰ÁZŒ¸Z‚ğs‚Á‚½Position‚ğ‘ã“ü‚·‚é
 		transform.position = Position;
 	}
-		
-	}
+}
 
 
