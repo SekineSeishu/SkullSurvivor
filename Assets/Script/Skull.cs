@@ -48,7 +48,7 @@ public class Skull : MonoBehaviour
         {
             //プレイヤーの攻撃力とスキルのダメージ
             Player player = GameObject.Find("Player").GetComponent<Player>();
-            enemy.HitDamage(player.Attack * _skillDamage);
+            enemy.HitDamage(player._attack * _skillDamage);
         }
     }
 }
