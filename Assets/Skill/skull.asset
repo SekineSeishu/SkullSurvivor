@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d894dbb9729a05488aa702fc3330c71, type: 3}
+  m_Name: skull
+  m_EditorClassIdentifier: 
+  grop: 2
+  _skillName: "\u30C9\u30AF\u30ED"
+  _skillLevel: 0
+  _skillText: "\u81EA\u8EAB\u306E\u5468\u308A\u3092\u30C9\u30AF\u30ED\u304C\u65CB\u56DE\u3059\u308B"
+  _skillList:
+  - "\u30C9\u30AF\u30ED\u304C\u81EA\u8EAB\u306E\u5468\u308A\u3092\u65CB\u56DE\u3059\u308B"
+  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7!"
+  - "\u30C9\u30AF\u30ED\u30922\u3064\u306B\u5897\u52A0"
+  - "\u30C9\u30AF\u30ED\u30923\u3064\u306B\u5897\u52A0"
+  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7!"
+  - "\u30C9\u30AF\u30ED\u30924\u3064\u306B\u5897\u52A0"
+  _damage: 10
+  _helse: 0
+  _coolTime: 5
+  _playTime: 10
+  _se: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 093175dd6f8b87349a7e41daf66af643, type: 3}
