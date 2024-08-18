@@ -63,7 +63,7 @@ public class Slashing : MonoBehaviour
         {
             //プレイヤーの攻撃力とスキルのダメージ
             Player player = GameObject.Find("Player").GetComponent<Player>();
-            enemy.HitDamage(player.Attack * SkillDamage); 
+            enemy.HitDamage(player._attack * SkillDamage); 
         }
     }
 }
