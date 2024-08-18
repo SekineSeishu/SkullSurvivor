@@ -5,15 +5,17 @@ using static Skill;
 
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField] private List<Skill> deck;
-    [SerializeField] private List<Skill> skills;
-    [SerializeField] private SkillButton _skillButton;
-    [SerializeField] private List<Transform> _buttonPosition;
+    [SerializeField] private List<Skill> deck;//残っているスキルリスト(ここからランダムに選ぶ)
+    [SerializeField] private List<Skill> skills;//全てのスキル
+    [SerializeField] private SkillButton _skillButton;//レベルアップボタン
+    [SerializeField] private List<Transform> _buttonPosition;//ボタン生成位置
     [SerializeField] private Player _player;
     [SerializeField] private SlashManager _slashManager;
     [SerializeField] private SkullManager _skullManager;
     [SerializeField] private MagicManager _magicManager;
     [SerializeField] private HPbar _hp;
+
+    private int _selectNum = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +25,16 @@ public class SkillManager : MonoBehaviour
 
     public void RandomSkillButton()
     {
+        //全てのスキルを一度デッキに入れる
         deck = new List<Skill>(skills);
-        for (int i = 0; i < 2; i++)
+        foreach (Skill skill in deck)
+        {
+            if (skill._skillLevel == 6)
+            {
+                deck.Remove(skill);
+            }
+        }
+        for (int i = 0; i < _selectNum; i++)
         {
             Instantiate(_skillButton.gameObject, _buttonPosition[i]);
             _skillButton._skill = deck[Random.Range(0, skills.Count)];
@@ -38,6 +48,7 @@ public class SkillManager : MonoBehaviour
         switch (grop)
         {
             case skillgrop.attack:
+                _player._attack += 0.5f;
                 break;
             case skillgrop.slash:
                 _slashManager.SkillLevelBounas();
