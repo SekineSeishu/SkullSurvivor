@@ -53,7 +53,7 @@ public class SkillManager : MonoBehaviour
         switch (grop)
         {
             case skillgrop.attack:
-                _player._attack += 0.5f;
+                _player.attackUp();
                 break;
             case skillgrop.slash:
                 _slashManager.SkillLevelBounas();
