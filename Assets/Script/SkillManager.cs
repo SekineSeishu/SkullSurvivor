@@ -10,9 +10,9 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private SkillButton _skillButton;//レベルアップボタン
     [SerializeField] private List<Transform> _buttonPosition;//ボタン生成位置
     [SerializeField] private Player _player;
-    [SerializeField] private SlashManager _slashManager;
-    [SerializeField] private SkullManager _skullManager;
-    [SerializeField] private MagicManager _magicManager;
+    [SerializeField] private SlashManager _slashManager;//斬撃
+    [SerializeField] private SkullManager _skullManager;//スカル
+    [SerializeField] private MagicManager _magicManager;//魔法陣
     [SerializeField] private HPbar _hp;
 
     private int _selectNum = 2;
@@ -29,11 +29,14 @@ public class SkillManager : MonoBehaviour
         deck = new List<Skill>(skills);
         foreach (Skill skill in deck)
         {
-            if (skill._skillLevel == 6)
+            //最大レベルの時はデッキから外す
+            if (skill._skillLevel == skill._maxSkillLevel)
             {
                 deck.Remove(skill);
             }
         }
+        //デッキからランダムなスキルのレベルアップボタンを生成する
+        //生成したスキルはデッキから外す
         for (int i = 0; i < _selectNum; i++)
         {
             Instantiate(_skillButton.gameObject, _buttonPosition[i]);
@@ -44,7 +47,9 @@ public class SkillManager : MonoBehaviour
 
     public void SkillUp(skillgrop grop)
     {
+        //スキルボタンを消す
         RemoveSkillButton();
+        //スキルの種類に応じて処理を行う
         switch (grop)
         {
             case skillgrop.attack:
