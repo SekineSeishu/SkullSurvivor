@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour
 {
-    public Skill _skill;
+    public Skill _skill;//スキルデータ
     public TMP_Text _name;
     public TMP_Text _level;
     public TMP_Text _description;
@@ -14,6 +14,7 @@ public class SkillButton : MonoBehaviour
 
     void Start()
     {
+        //スキルデータをUIに渡す
         _name.text = _skill._skillName;
         _level.text = _skill._skillLevel.ToString();
         _description.text = _skill._skillText;
@@ -22,6 +23,7 @@ public class SkillButton : MonoBehaviour
 
     public void SkillLevelUp()
     {
+        //指定したスキルのレベルを上げてレベルアップ時の処理
         _skill._skillLevel++;
         SkillManager sm = GetComponentInParent<SkillManager>();
         sm.SkillUp(_skill.grop);
