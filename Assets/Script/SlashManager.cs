@@ -10,7 +10,7 @@ public class SlashManager : MonoBehaviour
     public Player _player;
     public SpriteRenderer _playersp;//プレイヤーの向き
     public float _coolTime;//クールタイム
-    public bool _nowSkill;//スキル発動判定
+    public bool _nowSkill;//フィールドにスキルがあるかのフラグ
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,7 @@ public class SlashManager : MonoBehaviour
     //スキルレベルが上がった際に呼び出す
     public void SkillLevelBounas()
     {
+        //スキルのレベルが上がることに効果をプラスする
         if (_skill._skillLevel >= 2)//レベル2→ダメージアップ
         {
             _skill._damage = 15;
