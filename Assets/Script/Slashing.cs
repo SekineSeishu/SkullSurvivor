@@ -7,16 +7,17 @@ using UnityEngine.UI;
 public class Slashing : MonoBehaviour
 {
     public Skill _skill;
-    public Player _playerData;
+    public Player _player;
     [SerializeField] private GameObject SlashL;
     [SerializeField] private GameObject SlashR;
     public float SkillDamage = 10f;
     private float _playtime;
-    [SerializeField] private Direction side;
+    [SerializeField] private type side;
     private AudioSource audiosource;
     [SerializeField] private AudioClip SlashSE;
 
-    public enum Direction
+    //左右切り替え
+    public enum type
     {
         Left,
         Right
@@ -24,7 +25,7 @@ public class Slashing : MonoBehaviour
 
     void Start()
     {
-        //攻撃時間をリセットしてSEを流す
+        //ダメージと攻撃生存時間をスキルデータから受け取ってSEを流す
         _playtime = _skill._playTime;
         SkillDamage = _skill._damage;
         audiosource = GetComponent<AudioSource>();
@@ -37,16 +38,18 @@ public class Slashing : MonoBehaviour
         //時間の間条件によってスキルを飛ばす
         _playtime -= Time.deltaTime;
 
+        //左右どちらに飛ばすかで移動を切り替える
         switch (side)
         {
-            case Direction.Left:
+            case type.Left:
                 transform.Translate(-0.5f, 0, 0);
                 break;
-            case Direction.Right:
+            case type.Right:
                 transform.Translate(0.5f, 0, 0);
                 break;
         }
-        
+
+        //攻撃生存時間が終わったら消える
         if (_playtime <= 0)
         {
             Destroy(gameObject);
@@ -61,9 +64,8 @@ public class Slashing : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-            //プレイヤーの攻撃力とスキルのダメージ
-            Player player = GameObject.Find("Player").GetComponent<Player>();
-            enemy.HitDamage(player._attack * SkillDamage); 
+            //プレイヤーの攻撃力とスキルのダメージで計算して敵にダメージを与える
+            enemy.HitDamage(_player._attack * SkillDamage); 
         }
     }
 }
