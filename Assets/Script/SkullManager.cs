@@ -5,18 +5,19 @@ using TMPro;
 
 public class SkullManager : MonoBehaviour
 {
-    [SerializeField] private Skill _skill;
+    [SerializeField] private Skill _skill;//スキルデータ
     public Skull _skullPrehub;//スキル
     public Player _player;
     public int _SkullLevel;//スキルのレベル
-    public bool _spawnTrigger;
-    public bool _nowSkill;
+    public bool _spawnTrigger;//生成できるか判断
+    public bool _nowSkill;//フィールドにスキルがあるかの判断
     public float _coolTime;
-    private int _maxSkill;
+    private int _maxSkill;//最大で生成出来る数
 
     // Start is called before the first frame update
     void Start()
     {
+        //スキルデータを渡して初期化する
         _skill._skillLevel = 0;
         _coolTime = _skill._coolTime;
         _spawnTrigger = false;
@@ -29,36 +30,41 @@ public class SkullManager : MonoBehaviour
         if (_spawnTrigger)
         {
             _coolTime -= Time.deltaTime;
-            if (_coolTime >= 5)
+            if (_coolTime <= 0)
             {
-                if (!_nowSkill)
+                if (!_nowSkill)//現在スキルが生成されているか判断
                 {
                     transform.position = _player.transform.position;
+                    //レベルに応じて生成する
                     if (_maxSkill >= 1)
                     {
                         Skull skull = Instantiate(_skullPrehub, gameObject.transform);
-                        skull._centerPoint = _player;
+                        //スカルにプレイヤー、半径、角度を設定する
+                        skull._player = _player;
                         skull._radius = 2;
                         skull._angle = 5;
                     }
                     if (_maxSkill >= 2)
                     {
                         Skull skull2 = Instantiate(_skullPrehub, gameObject.transform);
-                        skull2._centerPoint = _player;
+                        //スカルにプレイヤー、半径、角度を設定する
+                        skull2._player = _player;
                         skull2._radius = 2;
                         skull2._angle = 20;
                     }
                     if (_maxSkill >= 3)
                     {
                         Skull skull3 = Instantiate(_skullPrehub, gameObject.transform);
-                        skull3._centerPoint = _player;
+                        //スカルにプレイヤー、半径、角度を設定する
+                        skull3._player = _player;
                         skull3._radius = 12;
                         skull3._angle = 10;
                     }
                     if (_maxSkill >= 4)
                     {
                         Skull skull4 = Instantiate(_skullPrehub, gameObject.transform);
-                        skull4._centerPoint = _player;
+                        //スカルにプレイヤー、半径、角度を設定する
+                        skull4._player = _player;
                         skull4._radius = 2;
                         skull4._angle = 15;
                     }
@@ -66,6 +72,7 @@ public class SkullManager : MonoBehaviour
                 }
                 else
                 {
+                    //全てのスキルが消えたらクールタイムをリセットする
                     if (transform.childCount == 0)
                     {
                         Respawn();
@@ -77,6 +84,7 @@ public class SkullManager : MonoBehaviour
 
     public void Respawn()
     {
+        //リセット
         _nowSkill = false;
         _coolTime = _skill._coolTime;
     }
