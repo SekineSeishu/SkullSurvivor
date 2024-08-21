@@ -8,17 +8,19 @@ public class SlashManager : MonoBehaviour
     public Slashing slashPrehubL;//スキル
     public Slashing slashPrehubR;//スキル
     public Player _player;
-    public SpriteRenderer _playersp;
+    public SpriteRenderer _playersp;//プレイヤーの向き
     public float _coolTime;//クールタイム
     public bool _nowSkill;//スキル発動判定
 
     // Start is called before the first frame update
     void Start()
     {
+        //スキルレベルの初期化とクールタイムをスキルデータから受け取る
         _skill._skillLevel = 1;
         _coolTime = _skill._coolTime;
     }
 
+    //スキルレベルが上がった際に呼び出す
     public void SkillLevelBounas()
     {
         if (_skill._skillLevel >= 2)//レベル2→ダメージアップ
@@ -51,30 +53,32 @@ public class SlashManager : MonoBehaviour
             {
                 transform.position = _player.gameObject.transform.position;
                 //スキルレベルに応じて生成する数を変える
+                //スキルにプレイヤーの情報を与える(ダメージを与える際にプレイヤーの攻撃力を使うため)
                 if (_skill._skillLevel <= 2)
                 {
                     if (_playersp.flipX == true)
                     {
                         Slashing slashR = Instantiate(slashPrehubR, gameObject.transform);
-                        slashR._playerData = _player;
+                        slashR._player = _player;
                     }
                     else if (_playersp.flipX == false)
                     {
                         Slashing slashL = Instantiate(slashPrehubL, gameObject.transform);
-                        slashL._playerData = _player;
+                        slashL._player = _player;
                     }
                 }
                 else if (_skill._skillLevel >= 3)
                 {
                     Slashing slashL = Instantiate(slashPrehubL, gameObject.transform);
-                    slashL._playerData = _player;
+                    slashL._player = _player;
                     Slashing slashR = Instantiate(slashPrehubR, gameObject.transform);
-                    slashR._playerData = _player;
+                    slashR._player = _player;
                 }
                 _nowSkill = true;
             }
             else
             {
+                //全てのスキルが消えたらクールタイムをリセットする
                 if (transform.childCount == 0)
                 {
                     Respawn();
@@ -84,6 +88,7 @@ public class SlashManager : MonoBehaviour
     }
     public void Respawn()
     {
+        //リセット
         _nowSkill = false;
          _coolTime = _skill._coolTime;
     }
