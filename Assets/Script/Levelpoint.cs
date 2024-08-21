@@ -5,22 +5,23 @@ using UnityEngine.UI;
 
 public class Levelpoint : MonoBehaviour
 {
-    private AudioSource audiosorce;
-    public AudioClip GetSE;
+    [SerializeField] private LevelManager _levelManager;
+    [SerializeField]private AudioSource _audiosorce;
+    public AudioClip _getSE;
     // Start is called before the first frame update
     void Start()
     {
-        audiosorce = GameObject.Find("LevelPoint").GetComponent<AudioSource>();
+        
     }
 
+    //経験値ゲット時にSEを流して消す
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        LevelManager lManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         if (collision.gameObject.tag == "Player")
         {
-            lManager._exp++;
-            audiosorce.PlayOneShot(GetSE);
-            Debug.Log(lManager._exp);
+            _levelManager._exp++;
+            _audiosorce.PlayOneShot(_getSE);
+            Debug.Log(_levelManager._exp);
             Destroy(gameObject);
         }
     }
