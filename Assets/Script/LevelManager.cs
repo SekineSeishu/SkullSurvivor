@@ -6,50 +6,43 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField]
-    private Image _levelber;
-    [SerializeField]
-    private TextMeshProUGUI _levelText;
-    [SerializeField]
-    private TextMeshProUGUI _resultLevel;
-    public int _levelUP = 2;
-    public int _level;
-    public int _exp;
-    [SerializeField]
-    private GameObject _buttonSelect;
-    [SerializeField]
-    public GameObject _player;
-    private float _attackUp = 0.2f;
-    [SerializeField]
-    private GameObject _hpBar;
-    [SerializeField] private SkillManager _skillManager;
+    [SerializeField] private Image _levelber;//レベルバー画像
+    [SerializeField] private TMP_Text _levelText;//レベル表示テキスト
+    [SerializeField] private TMP_Text _resultLevel;//リザルト表示テキスト
+    private int _levelUpExp;//レベルアップに必要な経験値数
+    public int _level;//現在のレベル
+    public int _exp;//現在の経験値
+    [SerializeField] private Player _player;
+    private float _attackUp = 0.2f;//レベルごとに上がるプレイヤーの攻撃力
+    [SerializeField] private HPbar _hpBar;//HPバー
+    [SerializeField] private SkillManager _skillManager; //スキルマネージャー
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //初期化
         _exp = 0;
+        _levelUpExp = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
         //レベルが上がった際にレベルボーナスの表示と必要経験値とプレイヤーと敵の攻撃力の増加
-        Player player = _player.GetComponent<Player>();
-        HPbar hpbar = _hpBar.GetComponent<HPbar>();
-        _levelber.fillAmount = (float)_exp / _levelUP;
+        _levelber.fillAmount = (float)_exp / _levelUpExp;
 
         _levelText.SetText("Lv" + _level);
         _resultLevel.SetText("Lv" + _level);
 
-        if (_exp >= _levelUP)
+        if (_exp >= _levelUpExp)
         {
             _skillManager.RandomSkillButton();
             Time.timeScale = 0;
             _level++;
-            _levelUP += 8;
-            player._attack += _attackUp;
-            hpbar._enemydamage += 1;
+            _levelUpExp += 8;
+            _player._attack += _attackUp;
+            _hpBar._enemydamage += 1;
             _exp = 0;
         }
         
