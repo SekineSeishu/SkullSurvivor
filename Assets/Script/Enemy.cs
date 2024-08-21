@@ -5,8 +5,7 @@ using TMPro;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject  player; // プレイヤー
-    Transform ptr;//プレイヤーの位置
+    public Player  _player; // プレイヤー
     [SerializeField] float speed = 0.8f; // 敵の動くスピード
     SpriteRenderer sp;
     public float HP;
@@ -17,8 +16,6 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player");
-        ptr = player.transform;// プレイヤーの位置を取得
         sp = GetComponent<SpriteRenderer>();
         DamageText.SetActive(false);
     }
@@ -27,14 +24,14 @@ public class Enemy : MonoBehaviour
     {
         
         //playerを追跡
-        transform.position = Vector2.MoveTowards(transform.position, ptr.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
 
         //追跡方向を向く
-        if (transform.position.x > ptr.position.x)//右方向
+        if (transform.position.x > _player.transform.position.x)//右方向
         {
             sp.flipX = true;
         }
-        else if (transform.position.x < ptr.position.x)//左方向
+        else if (transform.position.x < _player.transform.position.x)//左方向
         {
             sp.flipX = false;
         }
@@ -42,11 +39,8 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             //倒されたら経験値をその場に落とす
-            EnemySpawn enemyspawn = GameObject.Find("enemy respawn").GetComponent<EnemySpawn>();
             Instantiate(LevelPoint, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
-            enemyspawn.NowEnemies--;
-            enemyspawn.DeadEnemy++;
         }
 
         
@@ -79,7 +73,7 @@ public class Enemy : MonoBehaviour
             //壁より奥で生成された場合その場で消す
             EnemySpawn enemyspawn = GameObject.Find("enemy respawn").GetComponent<EnemySpawn>();
             Destroy(gameObject);
-            enemyspawn.NowEnemies--;
+            enemyspawn._nowEnemyCount--;
         }
     }
 }
