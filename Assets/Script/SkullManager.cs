@@ -9,8 +9,8 @@ public class SkullManager : MonoBehaviour
     public Skull _skullPrehub;//スキル
     public Player _player;
     public int _SkullLevel;//スキルのレベル
-    public bool _spawnTrigger;//生成できるか判断
-    public bool _nowSkill;//フィールドにスキルがあるかの判断
+    public bool _spawnTrigger;//スキルを生成できるかフラグ
+    public bool _nowSkill;//フィールドにスキルがあるかのフラグ
     public float _coolTime;
     private int _maxSkill;//最大で生成出来る数
 
@@ -32,7 +32,7 @@ public class SkullManager : MonoBehaviour
             _coolTime -= Time.deltaTime;
             if (_coolTime <= 0)
             {
-                if (!_nowSkill)//現在スキルが生成されているか判断
+                if (!_nowSkill)//フィールドにスキルがなければ実行
                 {
                     transform.position = _player.transform.position;
                     //レベルに応じて生成する
@@ -88,6 +88,7 @@ public class SkullManager : MonoBehaviour
         _nowSkill = false;
         _coolTime = _skill._coolTime;
     }
+    //スキルレベルが上がった際に呼び出す
     public void SkillLevelBounas()
     {
         //スキルのレベルが上がることに効果をプラスする
