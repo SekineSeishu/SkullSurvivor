@@ -5,6 +5,7 @@ using TMPro;
 
 public class EnemySpawn : MonoBehaviour
 {
+    [SerializeField] private Player _player;//プレイヤー
     [SerializeField] private GameObject nowEnemy;//今出現している敵
     [SerializeField] private GameObject gaikotu;//敵２
     [SerializeField] private GameObject BossEnemy;//ボス
@@ -14,32 +15,34 @@ public class EnemySpawn : MonoBehaviour
     private int maxEnemies = 20;//敵の上限
     private float spawnInterval = 1.0f;//リスポーン間隔
     private float spawnAreaSize = 10.0f;//出現エリア
-    public int NowEnemies = 0;//現在の敵の数
-    public int DeadEnemy = 0;//倒した敵の数
-    [SerializeField] private float BossInterval;//ボスが出てくるまでの時間
-    [SerializeField]private float EnemyspawnTime ;
-    public TextMeshProUGUI DeadCount;
-    public TextMeshProUGUI RisultDeadCount;
+    public int _nowEnemyCount = 0;//現在の敵の数
+    public int _deadEnemy= 0;//倒した敵の数
+    [SerializeField] private float _bossInterval;//ボスが出てくるまでの時間
+    [SerializeField]private float _enemyChangeTime ;//出現する敵の時間
+    public TMP_Text _deadCount;//倒した数の表示
+    public TMP_Text RisultDeadCount;
 
 
     void Start()
     {
-        EnemyspawnTime = 0;
-        BossInterval = 0;
+        //初期化
+        _enemyChangeTime = 0;
+        _bossInterval = 0;
         StartCoroutine(SpawnEnemies());
     }
 
     private void Update()
     {
         //倒した敵の数を表示
-        DeadCount.SetText(DeadEnemy.ToString());
-        RisultDeadCount.SetText(DeadEnemy.ToString());
-        BossInterval += Time.deltaTime;
-        EnemyspawnTime += Time.deltaTime;
+        _deadCount.SetText(_deadEnemy.ToString());
+        RisultDeadCount.SetText(_deadEnemy.ToString());
+        _bossInterval += Time.deltaTime;
+        _enemyChangeTime += Time.deltaTime;
 
-        if (NowEnemies <= 0)
+        //敵が倒された時に倒した数を更新
+        if (transform.childCount < _nowEnemyCount)
         {
-            NowEnemies = 0;
+            _deadEnemy++;
         }
     }
 
@@ -48,41 +51,44 @@ public class EnemySpawn : MonoBehaviour
         while (true)
         {
             // 敵の切り替えタイミングで出現する敵を変更
-            if (EnemyspawnTime >= 30.0f)
+            if (_enemyChangeTime >= 30.0f)
             {
                 nowEnemy = gaikotu;
             }
-            if (EnemyspawnTime >= 90.0f)
+            if (_enemyChangeTime >= 90.0f)
             {
                 nowEnemy = zombi2;
             }
-            if (EnemyspawnTime >= 150.0f)
+            if (_enemyChangeTime >= 150.0f)
             {
                 nowEnemy = monster;
             }
             //上限に達していない場合、新たな敵を出現させる
-            if (NowEnemies < maxEnemies )
+            if (_nowEnemyCount < maxEnemies )
             {
                 Vector2 spawnPosition = GetRandomSpawnPosition();
-                Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
-                NowEnemies++;   
+                GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
+                enemy.transform.parent = transform;
+                enemy.GetComponent<Enemy>()._player = _player;
+                _nowEnemyCount++;   
             }
-            if (EnemyspawnTime == 90)
+            if (_enemyChangeTime == 90)
             {
                 Vector2 spawnPosition = GetRandomSpawnPosition();
-                Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
-                NowEnemies++;
+                GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
+                enemy.transform.parent = transform;
+                _nowEnemyCount++;
             }
 
 
-            if (BossInterval >= 60 )
+            if (_bossInterval >= 60 )
             {
                 //1分おきにボスを呼び出す
                 Vector2 spawnPosition = GetRandomSpawnPosition();
-                Instantiate(BossEnemy, spawnPosition, Quaternion.identity);
-                BossInterval = 0;
+                GameObject bossEnemy = Instantiate(BossEnemy, spawnPosition, Quaternion.identity);
+                bossEnemy.transform.parent = transform;
+                _bossInterval = 0;
             }
-
             yield return new WaitForSeconds(spawnInterval);
         }
     }
@@ -93,12 +99,5 @@ public class EnemySpawn : MonoBehaviour
         Vector2 randomCircle = Random.insideUnitCircle * spawnAreaSize;
         Vector3 spawnPosition = new Vector3(randomCircle.x,randomCircle.y, 0.0f) + transform.position;
         return spawnPosition;
-    }
-
-    //敵がやられたとき
-    public void EnemyDestroyed()
-    {
-        NowEnemies--;
-        DeadEnemy++;
     }
 }
