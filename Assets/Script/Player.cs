@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-	[SerializeField] private Skill _skill;
-	public float _speed = 0.5f;
-	SpriteRenderer _sp;
-	public float _attack = 1.0f;
+	[SerializeField] private Skill _skill;//スキルデータ
+	public float _speed = 0.5f;//移動速度
+	SpriteRenderer _sp;//プレイヤーの向き
+	public float _attack = 1.0f;//攻撃力
 	private Animator animator;
 
 
@@ -47,6 +47,13 @@ public class Player : MonoBehaviour
 		// 現在の位置に加算減算を行ったPositionを代入する
 		transform.position = Position;
 	}
+
+	//攻撃力アップ
+	public void attackUp()
+	{
+		_attack += _skill._attack;
+
+    }
 }
 
 
