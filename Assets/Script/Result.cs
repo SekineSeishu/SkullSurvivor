@@ -16,6 +16,7 @@ public class Result : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //全てのスキルをグループごとにレベルテキストにセットする
         foreach (var skill in _skillList)
         {
             switch (skill.grop)
