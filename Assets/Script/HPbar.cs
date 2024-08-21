@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class HPbar : MonoBehaviour
 {
-    [SerializeField]
-    private Image HpBar;
+    [SerializeField] private Skill _skill;//スキルデータ
+    [SerializeField] private Image HpBar;//HPバー
     public float _maxHp = 100f;//最大HP
     public float _enemydamage = 5f;//敵に当たった際のダメージ
-    private float _helse = 10f;//回復ボタンを押したときの回復量
     [SerializeField] private GameObject _GameOver;//ゲームオーバーテキスト
     [SerializeField] private GameObject _resultbutton;//リザルトボタン
     public AudioSource playeraudiosource;
-    private bool _gameover;
+    private bool _gameover;//ゲームオーバーフラグ
 
     private float _currentHP;
 
@@ -61,7 +60,7 @@ public class HPbar : MonoBehaviour
 
     public void PlusHP()
     {
-        _currentHP = Mathf.Clamp(_currentHP + _helse, 0, _maxHp);
+        _currentHP = Mathf.Clamp(_currentHP + _skill._helse, 0, _maxHp);
         HpBar.fillAmount = _currentHP / _maxHp;
     }
 }
