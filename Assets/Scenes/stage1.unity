@@ -111644,6 +111644,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1880381403}
     - target: {fileID: 9125918552906811771, guid: d60a3de630a40c64a9af20e11cbbdcc0, type: 3}
+      propertyPath: enemyParent
+      value: 
+      objectReference: {fileID: 851964589}
+    - target: {fileID: 9125918552906811771, guid: d60a3de630a40c64a9af20e11cbbdcc0, type: 3}
       propertyPath: gaikotuboss
       value: 
       objectReference: {fileID: 9123195744340513763, guid: d42b4de8ec4c78340b4fafb014380079, type: 3}
