@@ -98,7 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa5ab432549e4b46aa9da708942e043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetSE: {fileID: 8300000, guid: fce10c043886e8740bf9219ecefe05a1, type: 3}
+  _levelManager: {fileID: 3106546690379831326, guid: 0d7aa98d46d00e640a4acaa3352440d1, type: 3}
+  _audiosorce: {fileID: 0}
+  _getSE: {fileID: 8300000, guid: fce10c043886e8740bf9219ecefe05a1, type: 3}
 --- !u!70 &9149381943321550679
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

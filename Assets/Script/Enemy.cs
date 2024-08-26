@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _player =FindObjectOfType<Player>();
         sp = GetComponent<SpriteRenderer>();
         DamageText.SetActive(false);
     }

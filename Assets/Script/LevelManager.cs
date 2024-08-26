@@ -8,7 +8,6 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Image _levelber;//レベルバー画像
     [SerializeField] private TMP_Text _levelText;//レベル表示テキスト
-    [SerializeField] private TMP_Text _resultLevel;//リザルト表示テキスト
     private int _levelUpExp;//レベルアップに必要な経験値数
     public int _level;//現在のレベル
     public int _exp;//現在の経験値
@@ -33,7 +32,6 @@ public class LevelManager : MonoBehaviour
         _levelber.fillAmount = (float)_exp / _levelUpExp;
 
         _levelText.SetText("Lv" + _level);
-        _resultLevel.SetText("Lv" + _level);
 
         if (_exp >= _levelUpExp)
         {

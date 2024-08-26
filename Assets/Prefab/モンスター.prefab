@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2295e1d4e2429b64094dadd16f9d3bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   speed: 1
   HP: 150
   LevelPoint: {fileID: 8260376916088918389, guid: a9c60545a42db254381b6ba6d6093ddb, type: 3}

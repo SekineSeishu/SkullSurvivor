@@ -635,16 +635,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4090d0bae70c76a46b427edd126c1d36, type: 2}
   - {fileID: 11400000, guid: 9843e0fdf17e12b4b9cd674d445bb596, type: 2}
   - {fileID: 11400000, guid: fe54ca23f7cca5b4da8191209d62090a, type: 2}
+  _levelManager: {fileID: 3106546690379831326, guid: 0d7aa98d46d00e640a4acaa3352440d1, type: 3}
+  _enemyDead: {fileID: 3024825989907323503, guid: a9acf725ab746ee44836a23c7edd9920, type: 3}
+  resultPlayerLevel: {fileID: 7316938889760959159}
+  resultEnemyKill: {fileID: 7316938889246992761}
   resultSlashLevel: {fileID: 7316938889740204696}
   resultSkullLevel: {fileID: 7316938888943186756}
   resultMagicLevel: {fileID: 7316938889978748006}
   resultHealCount: {fileID: 7316938889624299389}
   resultAttackCount: {fileID: 7316938888912547607}
-  SlashManager: {fileID: 0}
-  SkullManager: {fileID: 0}
-  MagicManager: {fileID: 0}
-  HealLevel: 0
-  AttackLevel: 0
 --- !u!1 &7316938889246992763
 GameObject:
   m_ObjectHideFlags: 0

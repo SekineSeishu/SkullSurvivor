@@ -20,7 +20,6 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private float _bossInterval;//ƒ{ƒX‚ªo‚Ä‚­‚é‚Ü‚Å‚ÌŠÔ
     [SerializeField]private float _enemyChangeTime ;//oŒ»‚·‚é“G‚ÌŠÔ
     public TMP_Text _deadCount;//“|‚µ‚½”‚Ì•\¦
-    public TMP_Text RisultDeadCount;
 
 
     void Start()
@@ -35,7 +34,6 @@ public class EnemySpawn : MonoBehaviour
     {
         //“|‚µ‚½“G‚Ì”‚ğ•\¦
         _deadCount.SetText(_deadEnemy.ToString());
-        RisultDeadCount.SetText(_deadEnemy.ToString());
         _bossInterval += Time.deltaTime;
         _enemyChangeTime += Time.deltaTime;
 
@@ -68,7 +66,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 Vector2 spawnPosition = GetRandomSpawnPosition();
                 GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
-                enemy.transform.parent = transform;
+                //enemy.transform.parent = transform;
                 enemy.GetComponent<Enemy>()._player = _player;
                 _nowEnemyCount++;   
             }
@@ -76,7 +74,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 Vector2 spawnPosition = GetRandomSpawnPosition();
                 GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
-                enemy.transform.parent = transform;
+                //enemy.transform.parent = transform;
                 _nowEnemyCount++;
             }
 

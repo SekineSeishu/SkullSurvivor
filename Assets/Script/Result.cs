@@ -7,6 +7,10 @@ using Unity.VisualScripting;
 public class Result : MonoBehaviour
 {
     [SerializeField] private List<Skill> _skillList;
+    [SerializeField] private LevelManager _levelManager;
+    [SerializeField] private EnemySpawn _enemyDead;
+    [SerializeField] private TextMeshProUGUI resultPlayerLevel;//プレイヤーのレベルテキスト(リザルト)
+    [SerializeField] private TextMeshProUGUI resultEnemyKill;//キル数テキスト(リザルト)
     [SerializeField] private TextMeshProUGUI resultSlashLevel;//斬撃スキルのレベルテキスト(リザルト)
     [SerializeField] private TextMeshProUGUI resultSkullLevel;//スカルスキルのレベルテキスト(リザルト)
     [SerializeField] private TextMeshProUGUI resultMagicLevel;//魔法陣スキルのレベルテキスト(リザルト)
@@ -38,6 +42,8 @@ public class Result : MonoBehaviour
                     break;
             }
         }
+        resultEnemyKill.SetText(_enemyDead._deadEnemy.ToString());
+        resultPlayerLevel.SetText("Lv" + _levelManager._level.ToString());
     }
 
     // Update is called once per frame
