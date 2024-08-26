@@ -11,6 +11,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private GameObject BossEnemy;//ƒ{ƒX
     [SerializeField] private GameObject monster;//“G3
     [SerializeField] private GameObject zombi2;//“G4
+    [SerializeField] private Transform enemyParent;
 
     private int maxEnemies = 20;//“G‚ÌãŒÀ
     private float spawnInterval = 1.0f;//ƒŠƒXƒ|[ƒ“ŠÔŠu
@@ -38,7 +39,7 @@ public class EnemySpawn : MonoBehaviour
         _enemyChangeTime += Time.deltaTime;
 
         //“G‚ª“|‚³‚ê‚½‚É“|‚µ‚½”‚ğXV
-        if (transform.childCount < _nowEnemyCount)
+        if (enemyParent.childCount < _nowEnemyCount)
         {
             _deadEnemy++;
         }
@@ -66,7 +67,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 Vector2 spawnPosition = GetRandomSpawnPosition();
                 GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
-                //enemy.transform.parent = transform;
+                enemy.transform.parent = enemyParent;
                 enemy.GetComponent<Enemy>()._player = _player;
                 _nowEnemyCount++;   
             }
@@ -74,7 +75,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 Vector2 spawnPosition = GetRandomSpawnPosition();
                 GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
-                //enemy.transform.parent = transform;
+                enemy.transform.parent = enemyParent;
                 _nowEnemyCount++;
             }
 
@@ -84,7 +85,7 @@ public class EnemySpawn : MonoBehaviour
                 //1•ª‚¨‚«‚Éƒ{ƒX‚ğŒÄ‚Ño‚·
                 Vector2 spawnPosition = GetRandomSpawnPosition();
                 GameObject bossEnemy = Instantiate(BossEnemy, spawnPosition, Quaternion.identity);
-                bossEnemy.transform.parent = transform;
+                bossEnemy.transform.parent = enemyParent;
                 _bossInterval = 0;
             }
             yield return new WaitForSeconds(spawnInterval);
