@@ -101,11 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skill: {fileID: 11400000, guid: 9843e0fdf17e12b4b9cd674d445bb596, type: 2}
   growthRate: 10
-  SkillDamage: 40
+  _skillDamage: 0
   playtime: 0
   _player: {fileID: 0}
-  _audiosource: {fileID: 0}
-  MagicSE: {fileID: 8300000, guid: 3ded5e0790ba95e4da16e52659a66af9, type: 3}
+  _audiosource: {fileID: -8376488633858748227}
+  _magicSE: {fileID: 8300000, guid: 3ded5e0790ba95e4da16e52659a66af9, type: 3}
 --- !u!58 &8427362067186388009
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grop: 2
   _skillName: "\u30C9\u30AF\u30ED"
-  _skillLevel: 0
-  _maxSkillLevel: 1
+  _skillLevel: 4
+  _maxSkillLevel: 6
   _skillText: "\u81EA\u8EAB\u306E\u5468\u308A\u3092\u30C9\u30AF\u30ED\u304C\u65CB\u56DE\u3059\u308B"
   _skillTextList:
   - "\u81EA\u8EAB\u306E\u5468\u308A\u3092\u30B9\u30AB\u30EB\u304C\u65CB\u56DE\u3059\u308B"
@@ -24,7 +24,7 @@ MonoBehaviour:
   - "\u30B9\u30AB\u30EB\uFF0B\uFF11"
   - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7\u201D\uFF01"
   - "\u30B9\u30AB\u30EB\uFF0B\uFF11"
-  _damage: 10
+  _damage: 15
   _helse: 0
   _attack: 0
   _coolTime: 5

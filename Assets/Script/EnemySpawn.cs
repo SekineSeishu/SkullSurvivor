@@ -69,8 +69,9 @@ public class EnemySpawn : MonoBehaviour
             if (_nowEnemyCount < maxEnemies )
             {
                 Vector2 spawnPosition = GetRandomSpawnPosition();
-                // boxSizeで指定したサイズの領域にコライダーが存在するかをチェック
+                // 生成位置がプレイヤー周りやマップ外ではないかチェック
                 Collider2D collider = Physics2D.OverlapCircle(spawnPosition, radius);
+                //大丈夫なら生成
                 if (collider == null)
                 {
                     GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
@@ -79,22 +80,19 @@ public class EnemySpawn : MonoBehaviour
                     _nowEnemyCount++;
                 }
             }
-            if (_enemyChangeTime == 90)
-            {
-                Vector2 spawnPosition = GetRandomSpawnPosition();
-                GameObject enemy = Instantiate(nowEnemy, spawnPosition, Quaternion.identity);
-                enemy.transform.parent = enemyParent;
-                _nowEnemyCount++;
-            }
-
 
             if (_bossInterval >= 60 )
             {
-                //1分おきにボスを呼び出す
                 Vector2 spawnPosition = GetRandomSpawnPosition();
-                GameObject bossEnemy = Instantiate(BossEnemy, spawnPosition, Quaternion.identity);
-                bossEnemy.transform.parent = enemyParent;
-                _bossInterval = 0;
+                // 生成位置がプレイヤー周りやマップ外ではないかチェック
+                Collider2D collider = Physics2D.OverlapCircle(spawnPosition, radius);
+                //大丈夫なら生成
+                if (collider == null)
+                {
+                    GameObject bossEnemy = Instantiate(BossEnemy, spawnPosition, Quaternion.identity);
+                    bossEnemy.transform.parent = enemyParent;
+                    _bossInterval = 0;
+                }
             }
             yield return new WaitForSeconds(spawnInterval);
         }

@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     private float _attackUp = 0.2f;//レベルごとに上がるプレイヤーの攻撃力
     [SerializeField] private HPbar _hpBar;//HPバー
     [SerializeField] private SkillManager _skillManager; //スキルマネージャー
+    [SerializeField] private AudioClip _levelUpSe;
+    private AudioSource _audio;
 
 
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class LevelManager : MonoBehaviour
         //初期化
         _exp = 0;
         _levelUpExp = 2;
+        _audio  = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,12 +36,13 @@ public class LevelManager : MonoBehaviour
 
         _levelText.SetText("Lv" + _level);
 
-        if (_exp == _levelUpExp)
+        if (_exp >= _levelUpExp)
         {
+            _audio.PlayOneShot(_levelUpSe);
             Time.timeScale = 0;
             _skillManager.RandomSkillButton();
             _level++;
-            _levelUpExp += 8;
+            _levelUpExp += 5;
             _player._attack += _attackUp;
             _hpBar._enemydamage += 1;
             _exp = 0;

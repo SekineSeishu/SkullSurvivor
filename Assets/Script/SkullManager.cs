@@ -8,7 +8,6 @@ public class SkullManager : MonoBehaviour
     [SerializeField] private Skill _skill;//スキルデータ
     public Skull _skullPrehub;//スキル
     public Player _player;
-    public int _SkullLevel;//スキルのレベル
     public bool _spawnTrigger;//スキルを生成できるかフラグ
     public bool _nowSkill;//フィールドにスキルがあるかのフラグ
     public float _coolTime;
@@ -57,7 +56,7 @@ public class SkullManager : MonoBehaviour
                         Skull skull3 = Instantiate(_skullPrehub, gameObject.transform);
                         //スカルにプレイヤー、半径、角度を設定する
                         skull3._player = _player;
-                        skull3._radius = 12;
+                        skull3._radius = 2;
                         skull3._angle = 10;
                     }
                     if (_maxSkill >= 4)
@@ -96,6 +95,7 @@ public class SkullManager : MonoBehaviour
         if (_skill._skillLevel >= 1)//スキルを発動可能にする
         {
             _spawnTrigger = true;
+            _maxSkill = 1;
         }
         if (_skill._skillLevel >= 2)//スキルのダメージを上げる
         {
@@ -103,11 +103,11 @@ public class SkullManager : MonoBehaviour
         }
         if (_skill._skillLevel >= 3)//出せるスキルの量を１増やす
         {
-            _maxSkill= 2;
+            _maxSkill++ ;
         }
         if (_skill._skillLevel >= 4)//出せるスキルの量を１増やす
         {
-            _maxSkill = 3;
+            _maxSkill++;
         }
         if (_skill._skillLevel >= 5)//スキルのダメージを上げる
         {
@@ -115,7 +115,7 @@ public class SkullManager : MonoBehaviour
         }
         if (_skill._skillLevel >= 6)//出せるスキルの量を１増やす
         {
-            _maxSkill = 4;
+            _maxSkill++;
         }
     }
 }

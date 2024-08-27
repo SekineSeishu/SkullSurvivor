@@ -7,8 +7,8 @@ using Unity.VisualScripting;
 public class Result : MonoBehaviour
 {
     [SerializeField] private List<Skill> _skillList;
-    [SerializeField] private LevelManager _levelManager;
-    [SerializeField] private EnemySpawn _enemyDead;
+    private LevelManager _levelManager;
+    private EnemySpawn _enemyDead;
     [SerializeField] private TextMeshProUGUI resultPlayerLevel;//プレイヤーのレベルテキスト(リザルト)
     [SerializeField] private TextMeshProUGUI resultEnemyKill;//キル数テキスト(リザルト)
     [SerializeField] private TextMeshProUGUI resultSlashLevel;//斬撃スキルのレベルテキスト(リザルト)
@@ -20,6 +20,8 @@ public class Result : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _levelManager = FindObjectOfType<LevelManager>();
+        _enemyDead = FindObjectOfType<EnemySpawn>();   
         //全てのスキルをグループごとにレベルテキストにセットする
         foreach (var skill in _skillList)
         {

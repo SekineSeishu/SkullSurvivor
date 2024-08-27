@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static Skill;
+
 
 public class Enemy : MonoBehaviour
 {
+    public enum EnemyGrop
+    {
+        enemy,
+        bossEnemy
+    }
+    public EnemyGrop grop;
     public Player  _player; // プレイヤー
     [SerializeField] float speed = 0.8f; // 敵の動くスピード
     SpriteRenderer sp;
@@ -40,8 +48,20 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             //倒されたら経験値をその場に落とす
-            Instantiate(LevelPoint, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            switch (grop)
+            {
+                case EnemyGrop.enemy:
+                    Instantiate(LevelPoint, transform.position, Quaternion.identity);
+                    Destroy(this.gameObject);
+                    break;
+                case EnemyGrop.bossEnemy:
+                    for(int i = 0; i <= 5; i++)
+                    {
+                        Instantiate(LevelPoint, transform.position, Quaternion.identity);
+                        Destroy(this.gameObject);
+                    }
+                    break;
+            }
         }
 
         
@@ -53,7 +73,7 @@ public class Enemy : MonoBehaviour
         //ダメージをもらったときにダメージの値をテキストにして表示
         TextMeshProUGUI DT = DamageText.GetComponent<TextMeshProUGUI>();
         DamageText.SetActive(true);
-        DT.SetText(damage.ToString());
+        DT.SetText(damage.ToString("f0"));
         StartCoroutine(DestroyText());
 
         HP -= damage;
@@ -66,15 +86,4 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(1f);
         DamageText.SetActive(false);
     }
-
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "DespawnArea")
-        {
-            //壁より奥で生成された場合その場で消す
-            EnemySpawn enemyspawn = GameObject.FindObjectOfType<EnemySpawn>();
-            Destroy(gameObject);
-            enemyspawn._nowEnemyCount--;
-        }
-    }*/
 }
