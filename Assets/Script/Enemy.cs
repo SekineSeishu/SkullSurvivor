@@ -67,14 +67,14 @@ public class Enemy : MonoBehaviour
         DamageText.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "DespawnArea")
         {
             //ï«ÇÊÇËâúÇ≈ê∂ê¨Ç≥ÇÍÇΩèÍçáÇªÇÃèÍÇ≈è¡Ç∑
-            EnemySpawn enemyspawn = GameObject.Find("enemy respawn").GetComponent<EnemySpawn>();
+            EnemySpawn enemyspawn = GameObject.FindObjectOfType<EnemySpawn>();
             Destroy(gameObject);
             enemyspawn._nowEnemyCount--;
         }
-    }
+    }*/
 }

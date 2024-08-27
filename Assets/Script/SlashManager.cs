@@ -52,24 +52,26 @@ public class SlashManager : MonoBehaviour
         {
             if (!_nowSkill)//現在スキルが出ているか
             {
-                transform.position = _player.gameObject.transform.position;
                 //スキルレベルに応じて生成する数を変える
                 //スキルにプレイヤーの情報を与える(ダメージを与える際にプレイヤーの攻撃力を使うため)
                 if (_skill._skillLevel <= 2)
                 {
                     if (_playersp.flipX == true)
                     {
+                        transform.position = _player.gameObject.transform.position;
                         Slashing slashR = Instantiate(slashPrehubR, gameObject.transform);
                         slashR._player = _player;
                     }
                     else if (_playersp.flipX == false)
                     {
+                        transform.position = _player.gameObject.transform.position;
                         Slashing slashL = Instantiate(slashPrehubL, gameObject.transform);
                         slashL._player = _player;
                     }
                 }
                 else if (_skill._skillLevel >= 3)
                 {
+                    transform.position = _player.gameObject.transform.position;
                     Slashing slashL = Instantiate(slashPrehubL, gameObject.transform);
                     slashL._player = _player;
                     Slashing slashR = Instantiate(slashPrehubR, gameObject.transform);

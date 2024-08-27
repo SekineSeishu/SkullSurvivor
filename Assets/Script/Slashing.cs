@@ -8,8 +8,6 @@ public class Slashing : MonoBehaviour
 {
     public Skill _skill;
     public Player _player;
-    [SerializeField] private GameObject SlashL;
-    [SerializeField] private GameObject SlashR;
     public float SkillDamage = 10f;
     private float _playtime;
     [SerializeField] private type side;

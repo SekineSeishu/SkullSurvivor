@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Image _levelber;//レベルバー画像
     [SerializeField] private TMP_Text _levelText;//レベル表示テキスト
-    private int _levelUpExp;//レベルアップに必要な経験値数
+    [SerializeField] private int _levelUpExp;//レベルアップに必要な経験値数
     public int _level;//現在のレベル
     public int _exp;//現在の経験値
     [SerializeField] private Player _player;
@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
 
         _levelText.SetText("Lv" + _level);
 
-        if (_exp >= _levelUpExp)
+        if (_exp == _levelUpExp)
         {
             _skillManager.RandomSkillButton();
             Time.timeScale = 0;

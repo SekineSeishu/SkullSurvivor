@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Levelpoint : MonoBehaviour
 {
-    [SerializeField] private LevelManager _levelManager;
+    [SerializeField] public LevelManager _levelManager;
     [SerializeField]private AudioSource _audiosorce;
     public AudioClip _getSE;
     // Start is called before the first frame update
     void Start()
     {
-        
+       transform.parent =  GameObject.FindObjectOfType<LevelManager>().transform;
+        _levelManager = GetComponentInParent<LevelManager>();
     }
 
     //経験値ゲット時にSEを流して消す

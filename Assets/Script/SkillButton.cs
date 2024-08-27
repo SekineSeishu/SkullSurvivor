@@ -16,7 +16,14 @@ public class SkillButton : MonoBehaviour
     {
         //スキルデータをUIに渡す
         _name.text = _skill._skillName;
-        _level.text = _skill._skillLevel.ToString();
+        if (_skill._skillLevel == 0)
+        {
+            _level.text = "new";
+        }
+        else
+        {
+            _level.text = "Lv:" + _skill._skillLevel;
+        }
         _description.text = _skill._skillText;
         _image.sprite = _skill._icon;
     }

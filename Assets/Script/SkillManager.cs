@@ -20,7 +20,10 @@ public class SkillManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        foreach (var skill in skills)
+        {
+            skill._skillLevel = 0;
+        }
     }
 
     public void RandomSkillButton()

@@ -100,8 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skill: {fileID: 11400000, guid: f4a06016f06131348aeab8030a354e7a, type: 2}
-  SlashL: {fileID: 1662034042762878651}
-  SlashR: {fileID: 5676758809423396983, guid: 3f4821b334478984cbda8bf08fc48314, type: 3}
+  _player: {fileID: 0}
   SkillDamage: 15
   side: 0
   SlashSE: {fileID: 8300000, guid: afe69592831c6bd44bb7f1a5f7f1df31, type: 3}
