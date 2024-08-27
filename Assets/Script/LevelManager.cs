@@ -35,8 +35,8 @@ public class LevelManager : MonoBehaviour
 
         if (_exp == _levelUpExp)
         {
-            _skillManager.RandomSkillButton();
             Time.timeScale = 0;
+            _skillManager.RandomSkillButton();
             _level++;
             _levelUpExp += 8;
             _player._attack += _attackUp;

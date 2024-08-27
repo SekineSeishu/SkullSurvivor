@@ -17,6 +17,7 @@ public class SlashManager : MonoBehaviour
     {
         //スキルレベルの初期化とクールタイムをスキルデータから受け取る
         _skill._skillLevel = 1;
+        _skill._damage = 10;
         _coolTime = _skill._coolTime;
     }
 

@@ -20,7 +20,7 @@ public class Skill : ScriptableObject
     public int _skillLevel;
     public int _maxSkillLevel;
     public string _skillText;
-    public List<string> _skillList;
+    public List<string> _skillTextList;
     public int _damage;
     public int _helse;
     public float _attack;

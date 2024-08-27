@@ -24,8 +24,8 @@ public class ButtonManager : MonoBehaviour
 
     public void closeButton()
     {
-        Destroy(_result);
         SceneManager.LoadScene(0);
+        Destroy(_result);
     }
     
     // Start is called before the first frame update

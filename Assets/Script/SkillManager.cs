@@ -30,21 +30,29 @@ public class SkillManager : MonoBehaviour
     {
         //全てのスキルを一度デッキに入れる
         deck = new List<Skill>(skills);
-        foreach (Skill skill in deck)
+        for (int i = 0; i < deck.Count; i++)
         {
             //最大レベルの時はデッキから外す
-            if (skill._skillLevel == skill._maxSkillLevel)
+            if (deck[i]._skillLevel == deck[i]._maxSkillLevel)
             {
-                deck.Remove(skill);
+                deck.Remove(deck[i]);
             }
         }
         //デッキからランダムなスキルのレベルアップボタンを生成する
         //生成したスキルはデッキから外す
         for (int i = 0; i < _selectNum; i++)
         {
-            Instantiate(_skillButton.gameObject, _buttonPosition[i]);
-            _skillButton._skill = deck[Random.Range(0, skills.Count)];
-            deck.Remove(_skillButton._skill);
+            if (deck.Count == 0)
+            {
+                Debug.Log("スキルがありません");
+                break;
+            }
+            int selectSKill = Random.Range(0, deck.Count);
+            Debug.Log("deck:" + selectSKill);
+           SkillButton skillButton =  Instantiate(_skillButton, _buttonPosition[i]);
+            skillButton._skill = deck[selectSKill];
+            Debug.Log("deckName:" + deck[selectSKill]._skillName);
+            deck.RemoveAt(selectSKill);
         }
     }
 

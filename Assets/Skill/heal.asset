@@ -17,7 +17,17 @@ MonoBehaviour:
   _skillLevel: 0
   _maxSkillLevel: 10
   _skillText: "HP\u3092\u56DE\u5FA9"
-  _skillList: []
+  _skillTextList:
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
+  - "HP\u3092\u56DE\u5FA9"
   _damage: 0
   _helse: 0
   _attack: 0

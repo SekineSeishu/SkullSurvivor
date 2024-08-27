@@ -24,7 +24,7 @@ public class SkillButton : MonoBehaviour
         {
             _level.text = "Lv:" + _skill._skillLevel;
         }
-        _description.text = _skill._skillText;
+        _description.text = _skill._skillTextList[_skill._skillLevel];
         _image.sprite = _skill._icon;
     }
 
@@ -33,6 +33,7 @@ public class SkillButton : MonoBehaviour
         //指定したスキルのレベルを上げてレベルアップ時の処理
         _skill._skillLevel++;
         SkillManager sm = GetComponentInParent<SkillManager>();
+        Time.timeScale = 1;
         sm.SkillUp(_skill.grop);
     }
 }

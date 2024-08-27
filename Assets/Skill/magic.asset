@@ -17,17 +17,17 @@ MonoBehaviour:
   _skillLevel: 0
   _maxSkillLevel: 6
   _skillText: "\u4E00\u5B9A\u6642\u9593\u3054\u3068\u306B\u9B54\u6CD5\u9663\u3092\u767A\u751F\u3055\u305B\u308B"
-  _skillList:
+  _skillTextList:
   - "\u4E00\u5B9A\u6642\u9593\u3054\u3068\u306B\u9B54\u6CD5\u9663\u3092\u767A\u751F\u3055\u305B\u308B"
-  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7!"
-  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7!"
-  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7!"
-  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7!"
-  - "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\u77ED\u7E2E"
+  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7\uFF01"
+  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7\uFF01"
+  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7\uFF01"
+  - "\u30C0\u30E1\u30FC\u30B8\u30A2\u30C3\u30D7\uFF01"
+  - "\u30AF\u30FC\u30EB\u30BF\u30A4\u30E0\u77ED\u7E2E\uFF01"
   _damage: 40
   _helse: 0
   _attack: 0
-  _coolTime: 3
+  _coolTime: 15
   _playTime: 2
   _se: {fileID: 8300000, guid: 3ded5e0790ba95e4da16e52659a66af9, type: 3}
   _icon: {fileID: 21300000, guid: 8731c303c225e4746b882a8bfd1cade2, type: 3}
